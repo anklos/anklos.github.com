@@ -1,0 +1,24 @@
+---
+layout: post
+title: "proxy with gem, bundle and git"
+date: 2012-1-04 18:18
+comments: true
+categories: technical
+---
+
+You cannot run away with setting proxy in the office, now and then you need to do that.
+
+For git:
+{% codeblock %}
+git config —global http.proxy http://user:password@host:port
+{% endcodeblock %}
+
+For gem:
+{% codeblock %}
+gem --http-proxy=http://user:password@host:port
+{% endcodeblock %}
+
+For bundle:
+{% codeblock %}
+export http_proxy=http://user:password@host:port
+{% endcodeblock %}

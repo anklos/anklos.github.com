@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "'multiple db solution'"
+title: "multiple db solution"
 date: 2012-10-20 12:14
 comments: true
 categories: technical
@@ -10,9 +10,9 @@ Recently I have been working on a big legacy code base which involves several db
 
 First, I came across this idea: just install another mysql (we use mysql) db in the virtual machine and it should work straightforward. I used vagrant to do this. A few gotchas here:
 
-1. in /etc/hosts.allow：add `mysqld: ALL : ALLOW` and `mysqld-max: ALL : ALLOW`
-2. in /etc/mysql/my.cnf: comment the line `skip-external-locking`, and set `bind-address` to be 0.0.0.0
-3. log into mysql, `GRANT ALL ON *.* to 'root'@'%'`
+	in /etc/hosts.allow：add `mysqld: ALL : ALLOW` and `mysqld-max: ALL : ALLOW`
+	in /etc/mysql/my.cnf: comment the line `skip-external-locking`, and set `bind-address` to   be 0.0.0.0
+	log into mysql, `GRANT ALL ON *.* to 'root'@'%'`
 
 Allright, thats it. But it looks a bit heavy to have a virtual machine running on the backround to just serve as a database.
 

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: technical | Shane Niu's Blog]]></title>
+  <link href="http://anklos.github.com/blog/categories/technical/atom.xml" rel="self"/>
+  <link href="http://anklos.github.com/"/>
+  <updated>2012-10-20T12:57:14+11:00</updated>
+  <id>http://anklos.github.com/</id>
+  <author>
+    <name><![CDATA[Shane Niu]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA['multiple db solution']]></title>
+    <link href="http://anklos.github.com/blog/2012/10/20/multiple-db-solution/"/>
+    <updated>2012-10-20T12:14:00+11:00</updated>
+    <id>http://anklos.github.com/blog/2012/10/20/multiple-db-solution</id>
+    <content type="html"><![CDATA[<p>Recently I have been working on a big legacy code base which involves several db schemas. For whatever reasons, great ancestor devs didn't seperate the test and developement database for the project, instead, just used the same databases and tables. As a young and passionate dev, I know this has to be changed. So I decided to setup multiple databases on my machine for running and testing the project.</p>
+
+<p>First, I came across this idea: just install another mysql (we use mysql) db in the virtual machine and it should work straightforward. I used vagrant to do this. A few gotchas here:</p>
+
+<ol>
+<li>in /etc/hosts.allow：add <code>mysqld: ALL : ALLOW</code> and <code>mysqld-max: ALL : ALLOW</code></li>
+<li>in /etc/mysql/my.cnf: comment the line <code>skip-external-locking</code>, and set <code>bind-address</code> to be 0.0.0.0</li>
+<li>log into mysql, <code>GRANT ALL ON *.* to 'root'@'%'</code></li>
+</ol>
+
+
+<p>Allright, thats it. But it looks a bit heavy to have a virtual machine running on the backround to just serve as a database.</p>
+
+<p>OK. There should be a smarter way. I did a bit search and found that mysql can have databases in different process and store the data in different folder. That's awesome.</p>
+
+<p>To get the idea about the setup config, simply run <code>mysqld_multi --example</code> to get a sample settings, which can be used in /etc/my.cnf. Then initialise the db by doing <code>/mysql/bin/mysql_install_db --datadir=/data/mysql/data1 --user</code>. Now there is a very important step which often mssing from most tutorials is before you want to use mysqld_multi to start a mysql instance, you would better start that instance mannualy <code>mysql.server --basedir --port</code> and run mysql_upgrdate to make sure there is no error in the newly created mysqld[i]. It is quite often to see some issues solved by this upgrade. After that, you can start a new mysqld by <code>mysqld_multi start 2</code>. If it still fails to start mysql, check the error log, which can be set in the my.cnf.</p>
+
+<p>Here is a sample setting:</p>
+
+<p>```
+[mysqld_multi]
+mysqld     = /usr/local/Cellar/mysql/5.5.27/bin/mysqld_safe
+mysqladmin = /usr/local/Cellar/mysql/5.5.27/bin/mysqladmin</p>
+
+<p>[mysqld2]
+socket     = /tmp/mysql.sock2
+port       = 3307
+pid-file   = /usr/local/var/mysql2/mysql.pid2
+datadir    = /usr/local/var/mysql2
+log-error  = /var/log/mysqld2.log
+ft_min_word_len=1
+ft_stopword_file = ''
+default-storage-engine=InnoDB
+```</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Best way to do a find/replace in several files?]]></title>
+    <link href="http://anklos.github.com/blog/2012/06/02/best-way-to-do-a-find-slash-replace-in-several-files/"/>
+    <updated>2012-06-02T00:05:00+10:00</updated>
+    <id>http://anklos.github.com/blog/2012/06/02/best-way-to-do-a-find-slash-replace-in-several-files</id>
+    <content type="html"><![CDATA[<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>find . -type f -print0 | xargs -0 -n 1 sed -i -e 's/from/to/g'</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Be noted that this way would break git index because it will also replace the files in the .git folder. So specify files types before you run it or you run it in the sub-directory instead of root directory.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[root access http proxy]]></title>
+    <link href="http://anklos.github.com/blog/2012/05/13/root-access-http-proxy/"/>
+    <updated>2012-05-13T23:55:00+10:00</updated>
+    <id>http://anklos.github.com/blog/2012/05/13/root-access-http-proxy</id>
+    <content type="html"><![CDATA[<p>Use <div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo -E</span></code></pre></td></tr></table></div></figure></notextile></div> to bypass proxy when needs root access for installation.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Overwrite messed local branch with remote branch]]></title>
+    <link href="http://anklos.github.com/blog/2012/04/24/easy-fix-for-your-messed-git-repository/"/>
+    <updated>2012-04-24T23:18:00+10:00</updated>
+    <id>http://anklos.github.com/blog/2012/04/24/easy-fix-for-your-messed-git-repository</id>
+    <content type="html"><![CDATA[<p>We often meet this situation on using git: we pull down the code from remote branch to a long time not updated repository and find lots of conflicts after merge. The first thought comes up to your mind is probably just overwrite the local branch by the remote one. It is not that straight forward to do this like SVN. Here I would like to introuce a full solution for this issue.</p>
+
+<p>First, if you already pull down the remote branch and have a lot of conflicts in the repository, you could run the command: <div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git reset --hard HEAD</span></code></pre></td></tr></table></div></figure></notextile></div> to drop off the changes done by last pull.</p>
+
+<p>Second, rename your local branch. For example, if you want to replace your master branch, you could do <div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git branch -m master old_master</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Thirdly, get the remote master to your local master by running command: <div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git checkout -b master origin/master</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Now you have the latest code in your master branch. If you want to delete your old master, you can just do: <div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git branch -D old_master</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>That's it, yeah!</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[use ctags navigation in mac vim]]></title>
+    <link href="http://anklos.github.com/blog/2012/04/12/navigation-in-vim/"/>
+    <updated>2012-04-12T18:25:00+10:00</updated>
+    <id>http://anklos.github.com/blog/2012/04/12/navigation-in-vim</id>
+    <content type="html"><![CDATA[<p>Step1: Type command <div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>brew install ctags</span></code></pre></td></tr></table></div></figure></notextile></div>
+Don't install ctags from http://ctags.sourceforge.net/. Reason is this version doesn't support ruby. I dont know why is that.. Anway, brew rocks.</p>
+
+<p>Step2: GO to your vimrc file, put one line: <div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>set tags=tags;</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Step3: GO to your project directory and run command <div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>ctags -R</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Done! Now you can go to functin calls and simply type 'ctrl ]'. Then it will magically jump to the definition.</p>
+]]></content>
+  </entry>
+  
+</feed>

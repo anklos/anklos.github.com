@@ -1,0 +1,312 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>'multiple db solution' - Shane Niu's Blog</title>
+  <meta name="author" content="Shane Niu">
+
+  
+  <meta name="description" content="Recently I have been working on a big legacy code base which involves several db schemas. For whatever reasons, great ancestor devs didn&#8217;t &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://anklos.github.com/blog/2012/10/20/multiple-db-solution/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Shane Niu's Blog" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-29906310']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Shane Niu's Blog</a></h1>
+  
+    <h2>No truth is truth. All depends</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:anklos.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">'Multiple Db Solution'</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-10-20T12:14:00+11:00" pubdate data-updated="true">Oct 20<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Recently I have been working on a big legacy code base which involves several db schemas. For whatever reasons, great ancestor devs didn&#8217;t seperate the test and developement database for the project, instead, just used the same databases and tables. As a young and passionate dev, I know this has to be changed. So I decided to setup multiple databases on my machine for running and testing the project.</p>
+
+<p>First, I came across this idea: just install another mysql (we use mysql) db in the virtual machine and it should work straightforward. I used vagrant to do this. A few gotchas here:</p>
+
+<ol>
+<li>in /etc/hosts.allow：add <code>mysqld: ALL : ALLOW</code> and <code>mysqld-max: ALL : ALLOW</code></li>
+<li>in /etc/mysql/my.cnf: comment the line <code>skip-external-locking</code>, and set <code>bind-address</code> to be 0.0.0.0</li>
+<li>log into mysql, <code>GRANT ALL ON *.* to 'root'@'%'</code></li>
+</ol>
+
+
+<p>Allright, thats it. But it looks a bit heavy to have a virtual machine running on the backround to just serve as a database.</p>
+
+<p>OK. There should be a smarter way. I did a bit search and found that mysql can have databases in different process and store the data in different folder. That&#8217;s awesome.</p>
+
+<p>To get the idea about the setup config, simply run <code>mysqld_multi --example</code> to get a sample settings, which can be used in /etc/my.cnf. Then initialise the db by doing <code>/mysql/bin/mysql_install_db --datadir=/data/mysql/data1 --user</code>. Now there is a very important step which often mssing from most tutorials is before you want to use mysqld_multi to start a mysql instance, you would better start that instance mannualy <code>mysql.server --basedir --port</code> and run mysql_upgrdate to make sure there is no error in the newly created mysqld[i]. It is quite often to see some issues solved by this upgrade. After that, you can start a new mysqld by <code>mysqld_multi start 2</code>. If it still fails to start mysql, check the error log, which can be set in the my.cnf.</p>
+
+<p>Here is a sample setting:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>[mysqld_multi]
+</span><span class='line'>mysqld     = /usr/local/Cellar/mysql/5.5.27/bin/mysqld_safe
+</span><span class='line'>mysqladmin = /usr/local/Cellar/mysql/5.5.27/bin/mysqladmin
+</span><span class='line'>
+</span><span class='line'>[mysqld2]
+</span><span class='line'>socket     = /tmp/mysql.sock2
+</span><span class='line'>port       = 3307
+</span><span class='line'>pid-file   = /usr/local/var/mysql2/mysql.pid2
+</span><span class='line'>datadir    = /usr/local/var/mysql2
+</span><span class='line'>log-error  = /var/log/mysqld2.log
+</span><span class='line'>ft_min_word_len=1
+</span><span class='line'>ft_stopword_file = ''
+</span><span class='line'>default-storage-engine=InnoDB</span></code></pre></td></tr></table></div></figure>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Shane Niu</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-10-20T12:14:00+11:00" pubdate data-updated="true">Oct 20<span>th</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/technical/'>technical</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://anklos.github.com/blog/2012/10/20/multiple-db-solution/" data-via="anklos" data-counturl="http://anklos.github.com/blog/2012/10/20/multiple-db-solution/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/06/02/best-way-to-do-a-find-slash-replace-in-several-files/" title="Previous Post: Best way to do a find/replace in several files?">&laquo; Best way to do a find/replace in several files?</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/10/20/multiple-db-solution/">'multiple db solution'</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/02/best-way-to-do-a-find-slash-replace-in-several-files/">Best way to do a find/replace in several files?</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/05/13/root-access-http-proxy/">root access http proxy</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/04/24/easy-fix-for-your-messed-git-repository/">Overwrite messed local branch with remote branch</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/04/12/navigation-in-vim/">use ctags navigation in mac vim</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("anklos", 10, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/anklos" class="twitter-follow-button" data-show-count="false">Follow @anklos</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Shane Niu -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'anklos';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://anklos.github.com/blog/2012/10/20/multiple-db-solution/';
+        var disqus_url = 'http://anklos.github.com/blog/2012/10/20/multiple-db-solution/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

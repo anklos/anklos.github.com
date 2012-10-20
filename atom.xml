@@ -1,111 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
 
-<!DOCTYPE html>
-<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
-<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
-<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
-<head>
-  <meta charset="utf-8">
-  <title>Shane Niu's Blog</title>
-  <meta name="author" content="Shane Niu">
-
-  
-  <meta name="description" content="Recently I have been working on a big legacy code base which involves several db schemas. For whatever reasons, great ancestor devs didn&#8217;t &hellip;">
-  
-
-  <!-- http://t.co/dKP3o1e -->
-  <meta name="HandheldFriendly" content="True">
-  <meta name="MobileOptimized" content="320">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  
-  <link rel="canonical" href="http://anklos.github.com/">
-  <link href="/favicon.png" rel="icon">
-  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="/javascripts/ender.js"></script>
-  <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  <link href="/atom.xml" rel="alternate" title="Shane Niu's Blog" type="application/atom+xml">
-  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
-<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-
-  
-  <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-29906310']);
-    _gaq.push(['_trackPageview']);
-
-    (function() {
-      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
-  </script>
-
-
-</head>
-
-<body   >
-  <header role="banner"><hgroup>
-  <h1><a href="/">Shane Niu's Blog</a></h1>
-  
-    <h2>No truth is truth. All depends</h2>
-  
-</hgroup>
-
-</header>
-  <nav role="navigation"><ul class="subscription" data-subscription="rss">
-  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
-  
-</ul>
-  
-<form action="http://google.com/search" method="get">
-  <fieldset role="search">
-    <input type="hidden" name="q" value="site:anklos.github.com" />
-    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
-  </fieldset>
-</form>
-  
-<ul class="main-navigation">
-  <li><a href="/">Blog</a></li>
-  <li><a href="/blog/archives">Archives</a></li>
-</ul>
-
-</nav>
-  <div id="main">
-    <div id="content">
-      <div class="blog-index">
-  
-  
-  
-    <article>
-      
-  <header>
+  <title><![CDATA[Shane Niu's Blog]]></title>
+  <link href="http://anklos.github.com/atom.xml" rel="self"/>
+  <link href="http://anklos.github.com/"/>
+  <updated>2012-10-20T12:57:14+11:00</updated>
+  <id>http://anklos.github.com/</id>
+  <author>
+    <name><![CDATA[Shane Niu]]></name>
     
-      <h1 class="entry-title"><a href="/blog/2012/10/20/multiple-db-solution/">&#8216;Multiple Db Solution&#8217;</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
 
   
-
-
-<time datetime="2012-10-20T12:14:00+11:00" pubdate data-updated="true">Oct 20<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Recently I have been working on a big legacy code base which involves several db schemas. For whatever reasons, great ancestor devs didn&#8217;t seperate the test and developement database for the project, instead, just used the same databases and tables. As a young and passionate dev, I know this has to be changed. So I decided to setup multiple databases on my machine for running and testing the project.</p>
+  <entry>
+    <title type="html"><![CDATA['multiple db solution']]></title>
+    <link href="http://anklos.github.com/blog/2012/10/20/multiple-db-solution/"/>
+    <updated>2012-10-20T12:14:00+11:00</updated>
+    <id>http://anklos.github.com/blog/2012/10/20/multiple-db-solution</id>
+    <content type="html"><![CDATA[<p>Recently I have been working on a big legacy code base which involves several db schemas. For whatever reasons, great ancestor devs didn&#8217;t seperate the test and developement database for the project, instead, just used the same databases and tables. As a young and passionate dev, I know this has to be changed. So I decided to setup multiple databases on my machine for running and testing the project.</p>
 
 <p>First, I came across this idea: just install another mysql (we use mysql) db in the virtual machine and it should work straightforward. I used vagrant to do this. A few gotchas here:</p>
 
@@ -151,126 +64,45 @@
 </span><span class='line'>ft_stopword_file = ''
 </span><span class='line'>default-storage-engine=InnoDB</span></code></pre></td></tr></table></div></figure>
 
-</div>
+]]></content>
+  </entry>
   
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/06/02/best-way-to-do-a-find-slash-replace-in-several-files/">Best Way to Do a Find/replace in Several Files?</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-06-02T00:05:00+10:00" pubdate data-updated="true">Jun 2<span>nd</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content">
+  <entry>
+    <title type="html"><![CDATA[Best way to do a find/replace in several files?]]></title>
+    <link href="http://anklos.github.com/blog/2012/06/02/best-way-to-do-a-find-slash-replace-in-several-files/"/>
+    <updated>2012-06-02T00:05:00+10:00</updated>
+    <id>http://anklos.github.com/blog/2012/06/02/best-way-to-do-a-find-slash-replace-in-several-files</id>
+    <content type="html"><![CDATA[
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>find . -type f -print0 | xargs -0 -n 1 sed -i -e 's/from/to/g'</span></code></pre></td></tr></table></div></figure>
 
 
 <p>Be noted that this way would break git index because it will also replace the files in the .git folder. So specify files types before you run it or you run it in the sub-directory instead of root directory.</p>
-</div>
+]]></content>
+  </entry>
   
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/05/13/root-access-http-proxy/">Root Access Http Proxy</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-05-13T23:55:00+10:00" pubdate data-updated="true">May 13<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Use</p>
+  <entry>
+    <title type="html"><![CDATA[root access http proxy]]></title>
+    <link href="http://anklos.github.com/blog/2012/05/13/root-access-http-proxy/"/>
+    <updated>2012-05-13T23:55:00+10:00</updated>
+    <id>http://anklos.github.com/blog/2012/05/13/root-access-http-proxy</id>
+    <content type="html"><![CDATA[<p>Use</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>sudo -E</span></code></pre></td></tr></table></div></figure>
 
 
 <p> to bypass proxy when needs root access for installation.</p>
-</div>
+]]></content>
+  </entry>
   
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/04/24/easy-fix-for-your-messed-git-repository/">Overwrite Messed Local Branch With Remote Branch</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-04-24T23:18:00+10:00" pubdate data-updated="true">Apr 24<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>We often meet this situation on using git: we pull down the code from remote branch to a long time not updated repository and find lots of conflicts after merge. The first thought comes up to your mind is probably just overwrite the local branch by the remote one. It is not that straight forward to do this like SVN. Here I would like to introuce a full solution for this issue.</p>
+  <entry>
+    <title type="html"><![CDATA[Overwrite messed local branch with remote branch]]></title>
+    <link href="http://anklos.github.com/blog/2012/04/24/easy-fix-for-your-messed-git-repository/"/>
+    <updated>2012-04-24T23:18:00+10:00</updated>
+    <id>http://anklos.github.com/blog/2012/04/24/easy-fix-for-your-messed-git-repository</id>
+    <content type="html"><![CDATA[<p>We often meet this situation on using git: we pull down the code from remote branch to a long time not updated repository and find lots of conflicts after merge. The first thought comes up to your mind is probably just overwrite the local branch by the remote one. It is not that straight forward to do this like SVN. Here I would like to introuce a full solution for this issue.</p>
 
 <p>First, if you already pull down the remote branch and have a lot of conflicts in the repository, you could run the command:</p>
 
@@ -299,42 +131,15 @@
 
 
 <p>That&#8217;s it, yeah!</p>
-</div>
+]]></content>
+  </entry>
   
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/04/12/navigation-in-vim/">Use Ctags Navigation in Mac Vim</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-04-12T18:25:00+10:00" pubdate data-updated="true">Apr 12<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Step1: Type command</p>
+  <entry>
+    <title type="html"><![CDATA[use ctags navigation in mac vim]]></title>
+    <link href="http://anklos.github.com/blog/2012/04/12/navigation-in-vim/"/>
+    <updated>2012-04-12T18:25:00+10:00</updated>
+    <id>http://anklos.github.com/blog/2012/04/12/navigation-in-vim</id>
+    <content type="html"><![CDATA[<p>Step1: Type command</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>brew install ctags</span></code></pre></td></tr></table></div></figure>
@@ -355,42 +160,15 @@
 
 
 <p>Done! Now you can go to functin calls and simply type &#8216;ctrl ]&#8217;. Then it will magically jump to the definition.</p>
-</div>
+]]></content>
+  </entry>
   
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/03/25/vim-move-around/">Vim: Move Around</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-03-25T00:55:00+11:00" pubdate data-updated="true">Mar 25<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>e: Move to the end of a word.</p>
+  <entry>
+    <title type="html"><![CDATA[vim: move around]]></title>
+    <link href="http://anklos.github.com/blog/2012/03/25/vim-move-around/"/>
+    <updated>2012-03-25T00:55:00+11:00</updated>
+    <id>http://anklos.github.com/blog/2012/03/25/vim-move-around</id>
+    <content type="html"><![CDATA[<p>e: Move to the end of a word.</p>
 
 <p>w: Move forward to the beginning of a word.</p>
 
@@ -423,42 +201,15 @@
 <p>&#8220;: Return to the cursor position before the latest jump (undo the jump).(Two back ticks. This is above the Tab key on some keyboards.)</p>
 
 <p>%: Jump to corresponding item, e.g. from an open brace to its matching closing brace.</p>
-</div>
+]]></content>
+  </entry>
   
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/03/21/search-defined-class-in-the-project/">Search Defined Class in the Project</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-03-21T17:20:00+11:00" pubdate data-updated="true">Mar 21<span>st</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Recently I came across with a problem of searching defined class in the project.</p>
+  <entry>
+    <title type="html"><![CDATA[Search defined class in the project]]></title>
+    <link href="http://anklos.github.com/blog/2012/03/21/search-defined-class-in-the-project/"/>
+    <updated>2012-03-21T17:20:00+11:00</updated>
+    <id>http://anklos.github.com/blog/2012/03/21/search-defined-class-in-the-project</id>
+    <content type="html"><![CDATA[<p>Recently I came across with a problem of searching defined class in the project.</p>
 
 <p>I thought it would be easy to just use <em>defined?(&#8216;klass&#8217;.constantize)</em>
 .</p>
@@ -491,42 +242,15 @@
 
 
 <p>Jesus..not good.</p>
-</div>
+]]></content>
+  </entry>
   
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/03/11/successful-people-are-successful/">Successful People Are Successful?</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-03-11T10:29:00+11:00" pubdate data-updated="true">Mar 11<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>This is a Sunday morning. Weather is clear.</p>
+  <entry>
+    <title type="html"><![CDATA[Successful People are successful?]]></title>
+    <link href="http://anklos.github.com/blog/2012/03/11/successful-people-are-successful/"/>
+    <updated>2012-03-11T10:29:00+11:00</updated>
+    <id>http://anklos.github.com/blog/2012/03/11/successful-people-are-successful</id>
+    <content type="html"><![CDATA[<p>This is a Sunday morning. Weather is clear.</p>
 
 <p>I lie on the bed, read one aticle linked from hack news: <a href="http://swombat.com/2012/3/10/successful-people">Successful People are successful</a></p>
 
@@ -537,42 +261,15 @@
 <p>However, being successful is more than that.<a href="http://news.ycombinator.com/item?id=3688263">One comment on hack news</a> gives a very good point of view. We often ignore that chances play an essential role in everyone&#8217;s success. If Steve Jobs was born in China, he would not create the great Apple. That&#8217;s the simple truth.</p>
 
 <p>I believe <strong>LIFE IS A RANDOM GAME</strong>. You may argue that hard working can change the fate. Yes. But hard working should also be seen as an attribute that is set in your body when you are born, and it is random. So a person is created with random attributes, and he will live with random chances happening around him. That&#8217;s the game of life.</p>
-</div>
+]]></content>
+  </entry>
   
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/03/05/set-trust-to-rvmrc-file-as-default/">Set Trust to .rvmrc File as Default</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-03-05T23:02:00+11:00" pubdate data-updated="true">Mar 5<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>If you use .rvmrc in your project to control the ruby version, you have probably seen the below message when you enter the project directory:</p>
+  <entry>
+    <title type="html"><![CDATA[Set trust to .rvmrc file as default]]></title>
+    <link href="http://anklos.github.com/blog/2012/03/05/set-trust-to-rvmrc-file-as-default/"/>
+    <updated>2012-03-05T23:02:00+11:00</updated>
+    <id>http://anklos.github.com/blog/2012/03/05/set-trust-to-rvmrc-file-as-default</id>
+    <content type="html"><![CDATA[<p>If you use .rvmrc in your project to control the ruby version, you have probably seen the below message when you enter the project directory:</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -587,42 +284,15 @@
 
 
 
-</div>
+]]></content>
+  </entry>
   
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/03/03/redirect-your-output-to-console/">Redirect Your Output to Console</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-03-03T23:20:00+11:00" pubdate data-updated="true">Mar 3<span>rd</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Below are some tricks I learnt from one thread in ruby-china forum.</p>
+  <entry>
+    <title type="html"><![CDATA[Redirect your output to console]]></title>
+    <link href="http://anklos.github.com/blog/2012/03/03/redirect-your-output-to-console/"/>
+    <updated>2012-03-03T23:20:00+11:00</updated>
+    <id>http://anklos.github.com/blog/2012/03/03/redirect-your-output-to-console</id>
+    <content type="html"><![CDATA[<p>Below are some tricks I learnt from one thread in ruby-china forum.</p>
 
 <p>Redirect log output to console:</p>
 
@@ -665,116 +335,55 @@
 
 
 
-</div>
+]]></content>
+  </entry>
   
+  <entry>
+    <title type="html"><![CDATA[God wins]]></title>
+    <link href="http://anklos.github.com/blog/2012/03/01/god-wins/"/>
+    <updated>2012-03-01T00:04:00+11:00</updated>
+    <id>http://anklos.github.com/blog/2012/03/01/god-wins</id>
+    <content type="html"><![CDATA[<p>Assume you will go into two rooms:</p>
+
+<p>Room A: full of latest cool staff like best cars, iphone 5, ipad 3, you name it. Things that contain and represent highest intelligence and creativity of hunman beings.</p>
+
+<p>Room B: A girl, who you would fall in love at first sight.</p>
+
+<p>Which room would give you more inside happiness?</p>
+
+<p>hmmm&#8230;</p>
+
+<p>That&#8217;s why Steve Jobs said his greatest achievement in his life is raise four kids.</p>
+]]></content>
+  </entry>
   
+  <entry>
+    <title type="html"><![CDATA[proxy with gem, bundle and git]]></title>
+    <link href="http://anklos.github.com/blog/2012/01/04/proxy/"/>
+    <updated>2012-01-04T18:18:00+11:00</updated>
+    <id>http://anklos.github.com/blog/2012/01/04/proxy</id>
+    <content type="html"><![CDATA[<p>You cannot run away with setting proxy in the office, now and then you need to do that.</p>
+
+<p>For git:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git config —global http.proxy http://user:password@host:port</span></code></pre></td></tr></table></div></figure>
 
 
-    </article>
+<p>For gem:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>gem --http-proxy=http://user:password@host:port</span></code></pre></td></tr></table></div></figure>
+
+
+<p>For bundle:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>export http_proxy=http://user:password@host:port</span></code></pre></td></tr></table></div></figure>
+
+
+
+]]></content>
+  </entry>
   
-  <div class="pagination">
-    
-      <a class="prev" href="/blog/page/2/">&larr; Older</a>
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
-</div>
-<aside class="sidebar">
-  
-    <section>
-  <h1>Recent Posts</h1>
-  <ul id="recent_posts">
-    
-      <li class="post">
-        <a href="/blog/2012/10/20/multiple-db-solution/">&#8216;multiple db solution&#8217;</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/06/02/best-way-to-do-a-find-slash-replace-in-several-files/">Best way to do a find/replace in several files?</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/05/13/root-access-http-proxy/">root access http proxy</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/04/24/easy-fix-for-your-messed-git-repository/">Overwrite messed local branch with remote branch</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/04/12/navigation-in-vim/">use ctags navigation in mac vim</a>
-      </li>
-    
-  </ul>
-</section>
-
-
-<section>
-  <h1>Latest Tweets</h1>
-  <ul id="tweets">
-    <li class="loading">Status updating&#8230;</li>
-  </ul>
-  <script type="text/javascript">
-    $.domReady(function(){
-      getTwitterFeed("anklos", 10, false);
-    });
-  </script>
-  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
-  
-    <a href="http://twitter.com/anklos" class="twitter-follow-button" data-show-count="false">Follow @anklos</a>
-  
-</section>
-
-
-
-
-
-  
-</aside>
-
-    </div>
-  </div>
-  <footer role="contentinfo"><p>
-  Copyright &copy; 2012 - Shane Niu -
-  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
-</p>
-
-</footer>
-  
-
-<script type="text/javascript">
-      var disqus_shortname = 'anklos';
-      
-        
-        var disqus_script = 'count.js';
-      
-    (function () {
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    }());
-</script>
-
-
-
-
-
-
-
-  <script type="text/javascript">
-    (function(){
-      var twitterWidgets = document.createElement('script');
-      twitterWidgets.type = 'text/javascript';
-      twitterWidgets.async = true;
-      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
-      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
-    })();
-  </script>
-
-
-
-
-
-</body>
-</html>
+</feed>

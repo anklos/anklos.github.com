@@ -82,7 +82,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2012/10/20/multiple-db-solution/">&#8216;Multiple Db Solution&#8217;</a></h1>
+      <h1 class="entry-title"><a href="/blog/2012/10/20/multiple-db-solution/">Multiple Db Solution</a></h1>
     
     
       <p class="meta">
@@ -109,11 +109,11 @@
 
 <p>First, I came across this idea: just install another mysql (we use mysql) db in the virtual machine and it should work straightforward. I used vagrant to do this. A few gotchas here:</p>
 
-<ol>
+<ul>
 <li>in /etc/hosts.allow：add <code>mysqld: ALL : ALLOW</code> and <code>mysqld-max: ALL : ALLOW</code></li>
 <li>in /etc/mysql/my.cnf: comment the line <code>skip-external-locking</code>, and set <code>bind-address</code> to be 0.0.0.0</li>
 <li>log into mysql, <code>GRANT ALL ON *.* to 'root'@'%'</code></li>
-</ol>
+</ul>
 
 
 <p>Allright, thats it. But it looks a bit heavy to have a virtual machine running on the backround to just serve as a database.</p>
@@ -687,7 +687,7 @@
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2012/10/20/multiple-db-solution/">&#8216;multiple db solution&#8217;</a>
+        <a href="/blog/2012/10/20/multiple-db-solution/">multiple db solution</a>
       </li>
     
       <li class="post">

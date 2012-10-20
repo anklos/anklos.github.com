@@ -4,7 +4,7 @@
   <title><![CDATA[Category: technical | Shane Niu's Blog]]></title>
   <link href="http://anklos.github.com/blog/categories/technical/atom.xml" rel="self"/>
   <link href="http://anklos.github.com/"/>
-  <updated>2012-10-20T12:57:14+11:00</updated>
+  <updated>2012-10-20T13:05:11+11:00</updated>
   <id>http://anklos.github.com/</id>
   <author>
     <name><![CDATA[Shane Niu]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA['multiple db solution']]></title>
+    <title type="html"><![CDATA[multiple db solution]]></title>
     <link href="http://anklos.github.com/blog/2012/10/20/multiple-db-solution/"/>
     <updated>2012-10-20T12:14:00+11:00</updated>
     <id>http://anklos.github.com/blog/2012/10/20/multiple-db-solution</id>
@@ -22,11 +22,11 @@
 
 <p>First, I came across this idea: just install another mysql (we use mysql) db in the virtual machine and it should work straightforward. I used vagrant to do this. A few gotchas here:</p>
 
-<ol>
+<ul>
 <li>in /etc/hosts.allow：add <code>mysqld: ALL : ALLOW</code> and <code>mysqld-max: ALL : ALLOW</code></li>
 <li>in /etc/mysql/my.cnf: comment the line <code>skip-external-locking</code>, and set <code>bind-address</code> to be 0.0.0.0</li>
 <li>log into mysql, <code>GRANT ALL ON *.* to 'root'@'%'</code></li>
-</ol>
+</ul>
 
 
 <p>Allright, thats it. But it looks a bit heavy to have a virtual machine running on the backround to just serve as a database.</p>

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: technical | Shane Niu's Blog]]></title>
   <link href="http://anklos.github.com/blog/categories/technical/atom.xml" rel="self"/>
   <link href="http://anklos.github.com/"/>
-  <updated>2012-10-20T13:05:11+11:00</updated>
+  <updated>2012-10-20T13:09:38+11:00</updated>
   <id>http://anklos.github.com/</id>
   <author>
     <name><![CDATA[Shane Niu]]></name>
@@ -23,9 +23,9 @@
 <p>First, I came across this idea: just install another mysql (we use mysql) db in the virtual machine and it should work straightforward. I used vagrant to do this. A few gotchas here:</p>
 
 <ul>
-<li>in /etc/hosts.allow：add <code>mysqld: ALL : ALLOW</code> and <code>mysqld-max: ALL : ALLOW</code></li>
-<li>in /etc/mysql/my.cnf: comment the line <code>skip-external-locking</code>, and set <code>bind-address</code> to be 0.0.0.0</li>
-<li>log into mysql, <code>GRANT ALL ON *.* to 'root'@'%'</code></li>
+<li><em>in /etc/hosts.allow：add <code>mysqld: ALL : ALLOW</code> and <code>mysqld-max: ALL : ALLOW</code></em></li>
+<li><em>in /etc/mysql/my.cnf: comment the line <code>skip-external-locking</code>, and set <code>bind-address</code> to   be 0.0.0.0</em></li>
+<li><em>log into mysql, <code>GRANT ALL ON *.* to 'root'@'%'</code></em></li>
 </ul>
 
 
